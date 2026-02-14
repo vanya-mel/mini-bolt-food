@@ -1,6 +1,6 @@
 [versions]
 mapstruct = "1.6.3"
-springdoc = "2.6.0"
+springdoc = "3.0.1"
 lombokMapstructBinding = "0.2.0"
 springBootDependencies = "4.0.2"
 
