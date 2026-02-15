@@ -1,7 +1,14 @@
 spring:
   application:
     name: order-service
-
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost/mini-bolt-food-db
+  jpa:
+    hibernate:
+      ddl-auto: validate
 
 server:
   port: 8082

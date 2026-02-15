@@ -13,12 +13,16 @@ dependencies {
     // Spring starters
     implementation("org.springframework.boot:spring-boot-starter-web")
 //    implementation("org.springframework.kafka:spring-kafka")
-//    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-flyway")
 
     // Additional libs
     implementation(libs.mapstruct)
     implementation(libs.springdocWebmvcUi)
+
+    // Database (runtime only)
+    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
     // Compile-time annotation processors
     annotationProcessor(libs.mapstructProcessor)
