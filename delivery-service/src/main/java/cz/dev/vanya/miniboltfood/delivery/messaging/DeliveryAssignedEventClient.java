@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * Publishes delivery-related events to Kafka.
+ *
+ * <p>
+ * Currently responsible for sending {@link DeliveryAssignedEvent} after a delivery is assigned.
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -20,6 +26,14 @@ public class DeliveryAssignedEventClient {
     private final DeliveryMapper deliveryMapper;
     private final KafkaTemplate<Long, DeliveryAssignedEvent> kafkaTemplate;
 
+    /**
+     * Sends a {@link DeliveryAssignedEvent} for the given delivery.
+     * <p>
+     * Uses {@code orderId} as the Kafka message key to keep all events for the same order
+     * in the same partition.
+     *
+     * @param delivery assigned delivery
+     */
     public void sendDeliveryAssignedEvent(final Delivery delivery) {
         final DeliveryAssignedEvent deliveryAssignedEvent = deliveryMapper.mapToDeliveryAssignedEvent(delivery);
 

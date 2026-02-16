@@ -11,6 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * Publishes {@link OrderPaidEvent} to Kafka.
+ *
+ * <p>
+ * The event is published only when a payment has been successfully completed.
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -22,6 +28,15 @@ public class OrderPaidEventClient {
     private final OrderEventMapper orderEventMapper;
     private final KafkaTemplate<Long, OrderPaidEvent> kafkaTemplate;
 
+    /**
+     * Sends an {@link OrderPaidEvent} for the given order if the payment status is successful.
+     *
+     * <p>
+     * Uses {@code orderId} as the Kafka message key to keep all events for the same order in the same partition.
+     *
+     * @param order order entity
+     * @param createPaymentResponseDto payment response returned by payment-service
+     */
     public void sendOrderPaidEvent(final Order order, final CreatePaymentResponseDto createPaymentResponseDto) {
         if (createPaymentResponseDto.paymentStatus() != PaymentStatusDto.PAYMENT_SUCCEEDED) {
             log.warn("Skipping OrderPaidEvent publish. Payment status={}.", createPaymentResponseDto.paymentStatus());
