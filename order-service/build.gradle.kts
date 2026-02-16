@@ -12,9 +12,9 @@ dependencies {
 
     // Spring starters
     implementation("org.springframework.boot:spring-boot-starter-web")
-//    implementation("org.springframework.kafka:spring-kafka")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-kafka")
     implementation("org.springframework.boot:spring-boot-starter-flyway")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // Additional libs
     implementation(libs.mapstruct)
@@ -28,6 +28,7 @@ dependencies {
     annotationProcessor(libs.mapstructProcessor)
     annotationProcessor(libs.lombokMapstructBinding)
     annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     // Lombok (compile only)
     compileOnly("org.projectlombok:lombok")

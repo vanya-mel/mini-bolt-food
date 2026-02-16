@@ -54,4 +54,11 @@ public class OrderController {
         log.info("Paying order with id {} with {}.", id, request.paymentMethod());
         return ResponseEntity.ok(orderService.payOrder(request, id));
     }
+
+    @Operation(summary = "Process last step when order was successfully delivered.")
+    @PostMapping("/{id}/delivery")
+    public ResponseEntity<OrderDto> closeOrder(@PathVariable("id") @Positive Long id) {
+        log.info("Processing last step when order [{}] was successfully delivered.", id);
+        return ResponseEntity.ok(orderService.closeOrder(id));
+    }
 }

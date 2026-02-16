@@ -10,6 +10,8 @@ public class OrderUtils {
     private static final String ORDER_PAYMENT_IN_WRONG_STATE_ERROR_MESSAGE = "Cannot pay order with id [%s]." +
             " Order must be in PENDING_PAYMENT state, but the current state is: %s.";
     private static final String PAYMENT_IN_PROGRESS_ERROR_MESSAGE = "Payment for order [%s] is in progress.";
+    private static final String ORDER_DELIVERY_WRONG_STATUS_ERROR_MESSAGE = "Cannot mask order with id [%s] as DELIVERED. " +
+            "Order must in in PENDING_DELIVERY state, but the current state is: %s.";
 
     public String orderNotFoundByIdErrorMessage(final Long orderId) {
         return ORDER_NOT_FOUND_BY_ID_ERROR_MESSAGE.formatted(orderId);
@@ -21,5 +23,9 @@ public class OrderUtils {
 
     public String orderPaymentInProgressErrorMessage(final Long orderId) {
         return PAYMENT_IN_PROGRESS_ERROR_MESSAGE.formatted(orderId);
+    }
+
+    public String orderDeliveryWrongStatusErrorMessage(final Long orderId, final OrderStatus orderStatus) {
+        return ORDER_DELIVERY_WRONG_STATUS_ERROR_MESSAGE.formatted(orderId, orderStatus);
     }
 }

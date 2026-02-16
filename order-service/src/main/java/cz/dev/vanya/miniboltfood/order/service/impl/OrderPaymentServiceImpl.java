@@ -7,6 +7,7 @@ import cz.dev.vanya.miniboltfood.order.domain.Order;
 import cz.dev.vanya.miniboltfood.order.domain.OrderStatus;
 import cz.dev.vanya.miniboltfood.order.external.PaymentHttpClient;
 import cz.dev.vanya.miniboltfood.order.mapper.PaymentMapper;
+import cz.dev.vanya.miniboltfood.order.messaging.OrderPaidEventClient;
 import cz.dev.vanya.miniboltfood.order.payload.request.PayOrderRequestDto;
 import cz.dev.vanya.miniboltfood.order.service.OrderPaymentService;
 import cz.dev.vanya.miniboltfood.order.utils.OrderUtils;
@@ -21,6 +22,7 @@ public class OrderPaymentServiceImpl implements OrderPaymentService {
 
     private final PaymentMapper paymentMapper;
     private final PaymentHttpClient paymentHttpClient;
+    private final OrderPaidEventClient orderPaidEventClient;
 
     @Override
     public OrderStatus makePayment(final PayOrderRequestDto payOrderRequestDto, final Order order) {
@@ -30,6 +32,8 @@ public class OrderPaymentServiceImpl implements OrderPaymentService {
         if (PaymentStatusDto.PAYMENT_INITIATED == createPaymentResponseDto.paymentStatus()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, OrderUtils.orderPaymentInProgressErrorMessage(order.getId()));
         }
-        return paymentMapper.mapOrderStatus(createPaymentResponseDto.paymentStatus());
+        final OrderStatus orderStatus = paymentMapper.mapOrderStatus(createPaymentResponseDto.paymentStatus());
+        orderPaidEventClient.sendOrderPaidEvent(order, createPaymentResponseDto);
+        return orderStatus;
     }
 }

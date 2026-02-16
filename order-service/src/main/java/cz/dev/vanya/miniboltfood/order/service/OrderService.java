@@ -1,5 +1,6 @@
 package cz.dev.vanya.miniboltfood.order.service;
 
+import cz.dev.vanya.miniboltfood.commonlibs.messaging.event.DeliveryAssignedEvent;
 import cz.dev.vanya.miniboltfood.order.payload.dto.OrderDto;
 import cz.dev.vanya.miniboltfood.order.payload.request.CreateOrderRequestDto;
 import cz.dev.vanya.miniboltfood.order.payload.request.PayOrderRequestDto;
@@ -29,4 +30,8 @@ public interface OrderService {
     OrderDto getOrderById(Long orderId);
 
     OrderDto payOrder(PayOrderRequestDto payOrderRequestDto, Long orderId);
+
+    void processDeliveryAssigned(DeliveryAssignedEvent deliveryAssignedEvent);
+
+    OrderDto closeOrder(Long orderId);
 }

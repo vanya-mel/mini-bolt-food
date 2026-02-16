@@ -10,8 +10,25 @@ spring:
     hibernate:
       ddl-auto: validate
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: order-service-group
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "cz.dev.vanya.miniboltfood.commonlibs.messaging.event"
+    listener:
+      ack-mode: record
+
 server:
   port: 8082
 
 payment-service:
   base-url: http://localhost:8081
+
+order-paid-topic: orders.events.v1
+delivery-assigned-topic: delivery.events.v1
