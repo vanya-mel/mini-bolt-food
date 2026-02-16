@@ -1,7 +1,14 @@
 spring:
   application:
     name: payment-service
-
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost/payment_db
+  jpa:
+    hibernate:
+      ddl-auto: validate
 
 server:
   port: 8081

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalOrderServiceExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidation(final MethodArgumentNotValidException ex,
