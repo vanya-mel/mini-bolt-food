@@ -1,6 +1,6 @@
-package cz.dev.vanya.miniboltfood.payment.payload.request;
+package cz.dev.vanya.miniboltfood.commonlibs.api.payment;
 
-import cz.dev.vanya.miniboltfood.payment.domain.PaymentMethod;
+import cz.dev.vanya.miniboltfood.commonlibs.api.payment.enums.PaymentMethodDto;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -18,6 +18,6 @@ public record CreatePaymentRequestDto(
         BigDecimal amount,
 
         @NotNull
-        PaymentMethod paymentMethod
+        PaymentMethodDto paymentMethod
 ) {
 }

@@ -1,7 +1,8 @@
 package cz.dev.vanya.miniboltfood.order.service;
 
+import cz.dev.vanya.miniboltfood.order.payload.dto.OrderDto;
 import cz.dev.vanya.miniboltfood.order.payload.request.CreateOrderRequestDto;
-import cz.dev.vanya.miniboltfood.order.payload.response.OrderDto;
+import cz.dev.vanya.miniboltfood.order.payload.request.PayOrderRequestDto;
 
 /**
  * Provides application-level operations for working with orders.
@@ -26,4 +27,6 @@ public interface OrderService {
      * @return order representation
      */
     OrderDto getOrderById(Long orderId);
+
+    OrderDto payOrder(PayOrderRequestDto payOrderRequestDto, Long orderId);
 }

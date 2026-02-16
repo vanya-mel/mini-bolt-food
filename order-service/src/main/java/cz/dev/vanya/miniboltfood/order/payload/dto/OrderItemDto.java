@@ -1,4 +1,4 @@
-package cz.dev.vanya.miniboltfood.order.payload.response;
+package cz.dev.vanya.miniboltfood.order.payload.dto;
 
 import java.math.BigDecimal;
 

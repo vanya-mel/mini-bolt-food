@@ -1,4 +1,4 @@
-package cz.dev.vanya.miniboltfood.commonlibs.payload.response;
+package cz.dev.vanya.miniboltfood.commonlibs.api.error;
 
 import java.time.Instant;
 import java.util.Map;

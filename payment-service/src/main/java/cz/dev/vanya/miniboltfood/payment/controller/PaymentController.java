@@ -1,7 +1,7 @@
 package cz.dev.vanya.miniboltfood.payment.controller;
 
-import cz.dev.vanya.miniboltfood.payment.payload.request.CreatePaymentRequestDto;
-import cz.dev.vanya.miniboltfood.payment.payload.response.CreatePaymentResponseDto;
+import cz.dev.vanya.miniboltfood.commonlibs.api.payment.CreatePaymentRequestDto;
+import cz.dev.vanya.miniboltfood.commonlibs.api.payment.CreatePaymentResponseDto;
 import cz.dev.vanya.miniboltfood.payment.service.PaymentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

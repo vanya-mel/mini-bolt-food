@@ -1,8 +1,8 @@
 package cz.dev.vanya.miniboltfood.payment.mapper;
 
 import cz.dev.vanya.miniboltfood.payment.domain.Payment;
-import cz.dev.vanya.miniboltfood.payment.payload.request.CreatePaymentRequestDto;
-import cz.dev.vanya.miniboltfood.payment.payload.response.CreatePaymentResponseDto;
+import cz.dev.vanya.miniboltfood.commonlibs.api.payment.CreatePaymentRequestDto;
+import cz.dev.vanya.miniboltfood.commonlibs.api.payment.CreatePaymentResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

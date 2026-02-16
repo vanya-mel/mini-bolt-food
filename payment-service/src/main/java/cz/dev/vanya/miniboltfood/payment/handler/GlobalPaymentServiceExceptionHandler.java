@@ -1,6 +1,6 @@
 package cz.dev.vanya.miniboltfood.payment.handler;
 
-import cz.dev.vanya.miniboltfood.commonlibs.payload.response.ApiErrorResponse;
+import cz.dev.vanya.miniboltfood.commonlibs.api.error.ApiErrorResponse;
 import cz.dev.vanya.miniboltfood.commonlibs.utils.ApiErrorUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

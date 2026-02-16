@@ -1,6 +1,6 @@
-package cz.dev.vanya.miniboltfood.order.payload.response;
+package cz.dev.vanya.miniboltfood.order.payload.dto;
 
-import cz.dev.vanya.miniboltfood.order.domain.OrderStatus;
+import cz.dev.vanya.miniboltfood.order.payload.dto.enums.OrderStatusDto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,7 +12,7 @@ public record OrderDto(
         BigDecimal totalAmount,
         String courierName,
         Integer etaMinutes,
-        OrderStatus orderStatus,
+        OrderStatusDto orderStatus,
         List<OrderItemDto> orderItems
 ) {
 }

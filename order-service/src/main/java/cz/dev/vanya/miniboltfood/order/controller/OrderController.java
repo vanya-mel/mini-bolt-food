@@ -1,7 +1,8 @@
 package cz.dev.vanya.miniboltfood.order.controller;
 
+import cz.dev.vanya.miniboltfood.order.payload.dto.OrderDto;
 import cz.dev.vanya.miniboltfood.order.payload.request.CreateOrderRequestDto;
-import cz.dev.vanya.miniboltfood.order.payload.response.OrderDto;
+import cz.dev.vanya.miniboltfood.order.payload.request.PayOrderRequestDto;
 import cz.dev.vanya.miniboltfood.order.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,5 +45,13 @@ public class OrderController {
     public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") @Positive Long id) {
         log.info("Retrieving order with id {}.", id);
         return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+
+    @Operation(summary = "Initiate payment process for given order.")
+    @PostMapping("/{id}/pay")
+    public ResponseEntity<OrderDto> payOrder(@PathVariable("id") @Positive Long id,
+                                             @RequestBody @Valid PayOrderRequestDto request) {
+        log.info("Paying order with id {} with {}.", id, request.paymentMethod());
+        return ResponseEntity.ok(orderService.payOrder(request, id));
     }
 }
