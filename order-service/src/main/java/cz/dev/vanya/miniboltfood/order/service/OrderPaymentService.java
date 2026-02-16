@@ -6,5 +6,5 @@ import cz.dev.vanya.miniboltfood.order.payload.request.PayOrderRequestDto;
 
 public interface OrderPaymentService {
 
-    OrderStatus makePayment(PayOrderRequestDto payOrderRequestDto, Order order, Long orderId);
+    OrderStatus makePayment(PayOrderRequestDto payOrderRequestDto, Order order);
 }

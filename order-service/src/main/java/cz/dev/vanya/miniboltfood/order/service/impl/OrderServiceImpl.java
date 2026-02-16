@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
                     OrderUtils.orderPaymentInWrongStateErrorMessage(orderId, order.getOrderStatus()));
         }
 
-        final OrderStatus orderStatus = orderPaymentService.makePayment(payOrderRequestDto, order, orderId);
+        final OrderStatus orderStatus = orderPaymentService.makePayment(payOrderRequestDto, order);
         order.setOrderStatus(orderStatus);
 
         return saveAndMapOrderDto(order);

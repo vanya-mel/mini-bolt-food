@@ -23,12 +23,12 @@ public class OrderPaymentServiceImpl implements OrderPaymentService {
     private final PaymentHttpClient paymentHttpClient;
 
     @Override
-    public OrderStatus makePayment(final PayOrderRequestDto payOrderRequestDto, final Order order, final Long orderId) {
-        final CreatePaymentRequestDto createPaymentRequest = paymentMapper.mapCreatePaymentRequestDto(payOrderRequestDto, order, orderId);
+    public OrderStatus makePayment(final PayOrderRequestDto payOrderRequestDto, final Order order) {
+        final CreatePaymentRequestDto createPaymentRequest = paymentMapper.mapCreatePaymentRequestDto(payOrderRequestDto, order);
         final CreatePaymentResponseDto createPaymentResponseDto = paymentHttpClient.createPayment(createPaymentRequest);
 
         if (PaymentStatusDto.PAYMENT_INITIATED == createPaymentResponseDto.paymentStatus()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, OrderUtils.orderPaymentInProgressErrorMessage(orderId));
+            throw new ResponseStatusException(HttpStatus.CONFLICT, OrderUtils.orderPaymentInProgressErrorMessage(order.getId()));
         }
         return paymentMapper.mapOrderStatus(createPaymentResponseDto.paymentStatus());
     }

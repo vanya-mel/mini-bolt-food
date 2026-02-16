@@ -17,10 +17,10 @@ import org.mapstruct.ValueMapping;
 )
 public interface PaymentMapper {
 
-    @Mapping(target = "orderId", source = "orderId")
+    @Mapping(target = "orderId", source = "order.id")
     @Mapping(target = "amount", source = "order.totalAmount")
     @Mapping(target = "paymentMethod", source = "payOrderRequestDto.paymentMethod")
-    CreatePaymentRequestDto mapCreatePaymentRequestDto(PayOrderRequestDto payOrderRequestDto, Order order, Long orderId);
+    CreatePaymentRequestDto mapCreatePaymentRequestDto(PayOrderRequestDto payOrderRequestDto, Order order);
 
 
     @ValueMapping(target = "PAID", source = "PAYMENT_SUCCEEDED")
