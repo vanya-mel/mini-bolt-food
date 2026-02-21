@@ -42,14 +42,14 @@ public class OrderController {
 
     @Operation(summary = "Load information about existing order by its unique identifier.")
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") @Positive Long id) {
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable @Positive Long id) {
         log.info("Retrieving order with id {}.", id);
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
 
     @Operation(summary = "Initiate payment process for given order.")
     @PostMapping("/{id}/pay")
-    public ResponseEntity<OrderDto> payOrder(@PathVariable("id") @Positive Long id,
+    public ResponseEntity<OrderDto> payOrder(@PathVariable @Positive Long id,
                                              @RequestBody @Valid PayOrderRequestDto request) {
         log.info("Paying order with id {} with {}.", id, request.paymentMethod());
         return ResponseEntity.ok(orderService.payOrder(request, id));
@@ -57,7 +57,7 @@ public class OrderController {
 
     @Operation(summary = "Process last step when order was successfully delivered.")
     @PostMapping("/{id}/delivery")
-    public ResponseEntity<OrderDto> closeOrder(@PathVariable("id") @Positive Long id) {
+    public ResponseEntity<OrderDto> closeOrder(@PathVariable @Positive Long id) {
         log.info("Processing last step when order [{}] was successfully delivered.", id);
         return ResponseEntity.ok(orderService.closeOrder(id));
     }
